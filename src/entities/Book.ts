@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryColumn} from "typeorm";
+import { v4 as uuid} from 'uuid'
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity('books')
 export class Book {
@@ -11,6 +12,12 @@ export class Book {
   @Column()
   foto: string
 
-  @Column()
+  @Column('text', {array: true})
   autores: string[]
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid()
+    }
+  }
 }
