@@ -1,6 +1,5 @@
-import { getCustomRepository, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { Book } from "../entities/Book";
-import { BooksRepository } from "../repositories/BooksRepository";
 
 class AddBookService {
   constructor(private repository: Repository<Book>) { }
