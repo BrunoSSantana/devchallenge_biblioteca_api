@@ -84,7 +84,7 @@ $ cd node_heat
 $ yarn
 
 # Once the services are running, run the migrations
-$ yarn prisma migrate dev
+$ yarn typeorm migration:run
 
 # To finish, run the api service
 $ yarn dev
