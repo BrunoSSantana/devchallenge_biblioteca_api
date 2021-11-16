@@ -1,12 +1,11 @@
-import { getCustomRepository } from "typeorm"
+import { getCustomRepository, Repository } from "typeorm"
+import { Book } from "../entities/Book"
 import { BooksRepository } from "../repositories/BooksRepository"
 
 class ListAllBooksService {
+  constructor(private repository: Repository<Book>) { }
   async execute() {
-    const booksRepository = getCustomRepository(BooksRepository)
-
-    const allBooks = await booksRepository.find()
-
+    const allBooks = await this.repository.find()
     return allBooks
   }
 }
