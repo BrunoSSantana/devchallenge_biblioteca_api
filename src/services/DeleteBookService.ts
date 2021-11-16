@@ -1,10 +1,11 @@
-import { getCustomRepository } from "typeorm";
+import { getCustomRepository, Repository } from "typeorm";
+import { Book } from "../entities/Book";
 import { BooksRepository } from "../repositories/BooksRepository";
 
 class DeleteBookService {
+  constructor(private repository: Repository<Book>) {}
   async execute(id: string) {
-    const booksRepository = getCustomRepository(BooksRepository)
-    const book = await booksRepository.delete(id)
+    const book = await this.repository.delete(id)
     return book
   }
 }
