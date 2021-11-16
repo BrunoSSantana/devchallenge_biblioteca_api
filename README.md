@@ -77,17 +77,24 @@ $ gh repo clone BrunoSSantana/devchallenge_biblioteca_api
 ### Backend
 
 ```bash
-# Starting from the project root folder, go to node_heat folder
-$ cd node_heat
-
 # Install the dependencies
 $ yarn
+
+# Create the instance of postgreSQL using docker
+$ docker run --name project-postgres -e POSTGRES_USER=docker \
+              -e POSTGRES_DB=project -e POSTGRES_PASSWORD=docker \
+              -p 5432:5432 -d postgres
+
+# Make sure the keys in '.env' to connect with your database
+# are set up correctly.
 
 # Once the services are running, run the migrations
 $ yarn typeorm migration:run
 
 # To finish, run the api service
 $ yarn dev
+
+# Well done, project is started!
 ```
 
 ## 📝 License
