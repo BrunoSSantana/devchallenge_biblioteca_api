@@ -1,11 +1,11 @@
-import { getCustomRepository } from "typeorm"
-import { BooksRepository } from "../repositories/BooksRepository"
+import { Repository } from "typeorm"
+import { Book } from "../entities/Book"
 
 class UpdateBookService {
+  constructor(private repository: Repository<Book>) {}
   async execute(id: string, autores: string[], editora: string, foto: string, titulo: string) {
-    const booksRepository = getCustomRepository(BooksRepository)
 
-    const query = booksRepository.createQueryBuilder()
+    const query = this.repository.createQueryBuilder()
       .where('id = :id')
       .setParameters({ id })
       .update()
@@ -27,7 +27,7 @@ class UpdateBookService {
       .execute()
     }
 
-    const book = await booksRepository.findOne(id)
+    const book = await this.repository.findOne(id)
     
     return book
   }
