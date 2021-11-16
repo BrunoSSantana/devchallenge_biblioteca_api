@@ -6,9 +6,9 @@ class AddBookController {
   async handle(request: Request, response: Response): Promise<Response> {
     const addBookService = new AddBookService()
     
-    const { autores, editora, foto } = request.body
+    const { autores, editora, foto, titulo } = request.body
 
-    const book = await addBookService.execute(autores, editora, foto)
+    const book = await addBookService.execute(autores, editora, foto, titulo)
 
     return response.json(book)
   }

@@ -7,6 +7,9 @@ export class Book {
   id: string
 
   @Column()
+  titulo: string
+
+  @Column()
   editora: string
 
   @Column()

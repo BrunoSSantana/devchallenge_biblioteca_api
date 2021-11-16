@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm"
 import { BooksRepository } from "../repositories/BooksRepository"
 
 class UpdateBookService {
-  async execute(id: string, autores: string[], editora: string, foto: string) {
+  async execute(id: string, autores: string[], editora: string, foto: string, titulo: string) {
     const booksRepository = getCustomRepository(BooksRepository)
 
     const query = booksRepository.createQueryBuilder()
@@ -22,10 +22,13 @@ class UpdateBookService {
       await query.set({ editora })
       .execute()
     }
-
-    // await query.execute()
+    if (titulo) {
+      await query.set({ titulo })
+      .execute()
+    }
 
     const book = await booksRepository.findOne(id)
+    
     return book
   }
 }

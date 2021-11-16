@@ -3,9 +3,9 @@ import { BooksRepository } from "../repositories/BooksRepository";
 
 class AddBookService {
 
-  async execute(autores: string[], editora: string, foto: string) {
+  async execute(autores: string[], editora: string, foto: string, titulo: string) {
     const booksRepository = getCustomRepository(BooksRepository)
-    const book = booksRepository.create({ autores, editora, foto })
+    const book = booksRepository.create({ autores, editora, foto, titulo })
     await booksRepository.save(book)
 
     return book
